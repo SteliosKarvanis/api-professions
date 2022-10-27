@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.shortcuts import render
 from .forms import LoginForm
 from .utils import *
 def input_profession(request):
@@ -16,13 +15,13 @@ def show_data(request):
             print("CBO")
             print(fullName)
         df_per_hours, df_metrics = connect_site(profession=fullName, functions=[get_pay_per_hours, get_metrics])
-        mean = df_metrics.loc["Média Salarial"]["Mensal"]
-        median = df_metrics.loc["Salário Mediana"]["Mensal"]
-        top = df_metrics.loc["Teto Salarial"]["Mensal"]
-        bottom = df_metrics.loc["Piso Salarial"]["Mensal"]
-        mean_hour = df_metrics.loc["Média Salarial"]["Por Hora"]
-        median_hour = df_metrics.loc["Salário Mediana"]["Por Hora"]
-        top_hour = df_metrics.loc["Teto Salarial"]["Por Hora"]
-        bottom_hour = df_metrics.loc["Piso Salarial"]["Por Hora"]
+        mean = df_metrics.loc["Mean"]["Mensal"]
+        median = df_metrics.loc["Median"]["Mensal"]
+        top = df_metrics.loc["Max"]["Mensal"]
+        bottom = df_metrics.loc["Min"]["Mensal"]
+        mean_hour = df_metrics.loc["Mean"]["Per Hour"]
+        median_hour = df_metrics.loc["Median"]["Per Hour"]
+        top_hour = df_metrics.loc["Max"]["Per Hour"]
+        bottom_hour = df_metrics.loc["Min"]["Per Hour"]
         print(df_metrics)
     return render(request, "pass.html", {"name":fullName.capitalize(), "mean":mean, "median":median, "top":top, "bottom":bottom, "mean_hour":mean_hour, "median_hour":median_hour, "top_hour":top_hour, "bottom_hour":bottom_hour})

@@ -1,8 +1,6 @@
 import glob
 import csv
-from turtle import color
 from bs4 import BeautifulSoup
-from numpy import number
 import pandas as pd
 import requests
 import matplotlib.pyplot as plt
@@ -94,8 +92,8 @@ def get_metrics(profession: str, soup) -> pd.DataFrame:
     per_hour.pop(3)
     df = pd.DataFrame()
     df["Mensal"] = mensal
-    df["Por Hora"] = per_hour
-    rows = ["Piso Salarial", "Média Salarial", "Salário Mediana", "Teto Salarial"]
+    df["Per Hour"] = per_hour
+    rows = ["Min", "Mean", "Median", "Max"]
     df.rename({i:rows[i] for i in range(len(rows))}, inplace=True)
     break
   return df
@@ -109,9 +107,9 @@ def get_pay_per_hours(profession: str, soup):
     hours = get_table_line(label="Jornada: ", table=table, tag="td")
     mensal = get_table_line(label="Salário Mensal:", table=table, tag="td")
     df = pd.DataFrame()
-    df["total"] = total
-    df["hours"] = hours
-    df["mensal"] = mensal
+    df["Total"] = total
+    df["Hours"] = hours
+    df["Mensal"] = mensal
     make_histogram(df)
     break
   return df
@@ -131,8 +129,8 @@ def connect_site(profession: str, functions: list):
 def make_histogram(df):
   if os.path.exists("authentication/static/histogram.png"):
     os.remove("authentication/static/histogram.png")
-  numbers = df["total"].to_numpy()
-  hours = df["hours"].to_numpy()
+  numbers = df["Total"].to_numpy()
+  hours = df["Hours"].to_numpy()
   number_total = numbers.sum()
   plt.title("Distribuição dos funcionários por horas trabalhadas")
   plt.xlabel("Horas")
