@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/static/bootstrap.css">
+  <style>
+  </style>
+</head>
+
+<body style="background-image: url('/static/bg.jpg');">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark flex-column flex-sm-row">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="new_search">
+        <img src="/static/chico.png" alt="chico" width="100" height="30">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="new_search">New Search</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <form role="form text-left" action="" method="post">
+    {% csrf_token %}
+    <div class="p-4 mt-5 text-white col-lg-5 rounded mx-auto color" style="background-color:#0E3345;">
+      <label for="name" class="form-label">Professsion or CBO</label>
+      <div class="mb-3">
+        {{ form.fullName }}
+      </div>
+      <div class="text-center">
+        <button type="submit" name="getData" class="btn btn-outline-primary w-100 mt-4 mb-2" formaction="/show/">Get
+          Data</button>
+      </div>
+    </div>
+  </form>
+
+</body>
+
+</html>
